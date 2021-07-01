@@ -1,6 +1,6 @@
 package com.odealva.pocket.core.service;
 
-import com.odealva.pocket.core.model.credentials.PocketCredentials;
+import com.odealva.pocket.configuration.credentials.PocketCredentials;
 import com.odealva.pocket.core.model.pocket.PocketRequest;
 import io.vavr.CheckedFunction1;
 import io.vavr.Function1;

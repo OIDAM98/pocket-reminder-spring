@@ -1,4 +1,4 @@
-package com.odealva.pocket.core.model.credentials;
+package com.odealva.pocket.configuration.credentials;
 
 import com.odealva.pocket.core.model.pocket.PocketRequest;
 import org.springframework.boot.context.properties.ConfigurationProperties;

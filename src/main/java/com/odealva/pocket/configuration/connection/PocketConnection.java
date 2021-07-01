@@ -1,6 +1,6 @@
-package com.odealva.pocket.core.connection;
+package com.odealva.pocket.configuration.connection;
 
-import com.odealva.pocket.core.model.credentials.PocketCredentials;
+import com.odealva.pocket.configuration.credentials.PocketCredentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
