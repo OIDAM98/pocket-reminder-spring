@@ -1,4 +1,4 @@
-package com.odealva.pocket.core.model.configuration;
+package com.odealva.pocket.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

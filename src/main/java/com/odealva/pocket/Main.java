@@ -1,8 +1,8 @@
 package com.odealva.pocket;
 
 import com.odealva.pocket.core.controllers.connection.PocketConnection;
-import com.odealva.pocket.core.model.configuration.GlobalConfig;
-import com.odealva.pocket.core.model.configuration.AppConfiguration;
+import com.odealva.pocket.configuration.GlobalConfig;
+import com.odealva.pocket.configuration.AppConfiguration;
 import io.vavr.collection.List;
 import io.vavr.control.Try;
 import org.slf4j.Logger;
