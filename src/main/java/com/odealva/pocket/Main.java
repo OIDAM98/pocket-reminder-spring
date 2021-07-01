@@ -2,8 +2,8 @@ package com.odealva.pocket;
 
 import com.odealva.pocket.core.controllers.Controller;
 import com.odealva.pocket.core.controllers.connection.PocketConnection;
-import com.odealva.pocket.core.model.configuration.GlobalConfig;
-import com.odealva.pocket.core.model.configuration.AppConfiguration;
+import com.odealva.pocket.configuration.GlobalConfig;
+import com.odealva.pocket.configuration.AppConfiguration;
 import com.odealva.pocket.core.model.pocket.PocketArticle;
 import io.vavr.collection.List;
 import io.vavr.control.Try;

@@ -28,13 +28,14 @@ public class PocketConnection {
     @Autowired
     private PocketCredentials credentials;
 
-    private Try<PocketAuth> authRes;
-    private Try<Pocket> pocketRes;
+    @Autowired
+    private PocketAuth authRes;
+
+    @Autowired
+    private Pocket pocketRes;
 
     @PostConstruct
     private void createConnection() {
-        authRes = makeAuth();
-        pocketRes = authRes.flatMap(this::generateAccess);
         logger.debug("Connection to Pocket with Credentials");
         logger.debug(credentials.toString());
         logger.debug("Resulted in");
@@ -43,10 +44,10 @@ public class PocketConnection {
 
 
     public Try<List<PocketItem>> getArticles(int count) {
-        Try<GetItemsCmd> query = buildQuery(count);
-        return query
-                .flatMap(cmd -> pocketRes.flatMap(pocket -> getItemsResults(pocket).apply(cmd)))
-                .map(getRes -> List.ofAll(getRes.getList()));
+        Function1<GetItemsCmd, Try<GetItemsResult>> getItems = CheckedFunction1.liftTry(pocketRes::getItems);
+        return buildQuery(count)
+                .flatMap(getItems)
+                .map(items -> List.ofAll(items.getList()));
     }
 
     private Try<GetItemsCmd> buildQuery(int count) {
@@ -56,14 +57,6 @@ public class PocketConnection {
                 .sort(Sort.valueOf(req.getSort()))
                 .detailType(DetailType.valueOf(req.getDetailType()))
                 .build());
-    }
-
-    private Try<PocketAuth> makeAuth() {
-        return Try.of(() -> PocketAuthFactory.createForAccessToken(credentials.getConsumerKey(), credentials.getAccessToken()));
-    }
-
-    private Try<Pocket> generateAccess(PocketAuth auth) {
-        return Try.of(() -> new Pocket(auth));
     }
 
     private Function1<GetItemsCmd, Try<GetItemsResult>> getItemsResults(Pocket pocket) {

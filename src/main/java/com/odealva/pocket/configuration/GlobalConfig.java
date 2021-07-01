@@ -1,7 +1,7 @@
-package com.odealva.pocket.core.model.configuration;
+package com.odealva.pocket.configuration;
 
 
-import com.odealva.pocket.core.model.configuration.yaml.YamlPropertySourceFactory;
+import com.odealva.pocket.configuration.yaml.YamlPropertySourceFactory;
 import com.odealva.pocket.core.model.credentials.PocketCredentials;
 import com.odealva.pocket.core.model.credentials.TelegramCredentials;
 import org.springframework.context.annotation.Bean;
