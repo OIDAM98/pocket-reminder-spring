@@ -1,8 +1,10 @@
 package com.odealva.pocket;
 
+import com.odealva.pocket.core.controllers.Controller;
 import com.odealva.pocket.core.controllers.connection.PocketConnection;
 import com.odealva.pocket.core.model.configuration.GlobalConfig;
 import com.odealva.pocket.core.model.configuration.AppConfiguration;
+import com.odealva.pocket.core.model.pocket.PocketArticle;
 import io.vavr.collection.List;
 import io.vavr.control.Try;
 import org.slf4j.Logger;
@@ -25,6 +27,11 @@ public class Main {
 		final PocketConnection pocket = ctx.getBean(PocketConnection.class);
 		Try<List<PocketItem>> articles = pocket.getArticles(config.msgsConf().getAmountToRequest());
 		logger.debug(articles.toString());
+		final Controller controller = ctx.getBean(Controller.class);
+		Try<List<PocketArticle>> domain = articles.map(controller::transformToDomain);
+		Try<List<PocketArticle>> randomized = domain.map(arts -> controller.getRandomArticles(arts, config.msgsConf().getAmountToSend()));
+		logger.debug("Initial count of articles: " + articles.map(a -> a.size()));
+		logger.debug("Randomized count: " + randomized.map(a -> a.size()));
 	}
 
 }

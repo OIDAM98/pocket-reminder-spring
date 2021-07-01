@@ -3,7 +3,6 @@ package com.odealva.pocket.core.controllers.connection;
 import com.odealva.pocket.core.model.credentials.PocketCredentials;
 import com.odealva.pocket.core.model.pocket.PocketRequest;
 import io.vavr.CheckedFunction1;
-import io.vavr.CheckedFunction2;
 import io.vavr.Function1;
 import io.vavr.collection.List;
 import io.vavr.control.Try;
