@@ -1,33 +1,36 @@
 package com.odealva.pocket.core.model.configuration;
 
+
+import com.odealva.pocket.core.model.configuration.yaml.YamlPropertySourceFactory;
 import com.odealva.pocket.core.model.credentials.PocketCredentials;
+import com.odealva.pocket.core.model.credentials.TelegramCredentials;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
+@Configuration
+@PropertySource(value = "classpath:app-config.yaml", factory = YamlPropertySourceFactory.class)
 public class GlobalConfig {
-    private AppConfig appConfig;
-    private NotificationCredentials notifConfig;
-    private PocketCredentials pocketConfig;
-    private CronConfig crons;
 
-    public GlobalConfig(AppConfig appConfig, NotificationCredentials notifConfig, PocketCredentials pocketConfig, CronConfig crons) {
-        this.appConfig = appConfig;
-        this.notifConfig = notifConfig;
-        this.pocketConfig = pocketConfig;
-        this.crons = crons;
+    @Bean("msgsConfig")
+    public MessagesConfig msgsConf() {
+        return new MessagesConfig();
     }
 
-    public AppConfig getAppConfig() {
-        return appConfig;
+    @Bean("schedues")
+    public CronConfig schedules() {
+        return new CronConfig();
     }
 
-    public NotificationCredentials getNotifConfig() {
-        return notifConfig;
+    @Bean("pocketConf")
+    public PocketCredentials pocket() {
+        return new PocketCredentials();
     }
 
-    public PocketCredentials getPocketConfig() {
-        return pocketConfig;
+    @Bean("telegramConf")
+    public TelegramCredentials telegram() {
+        return new TelegramCredentials();
     }
 
-    public CronConfig getCrons() {
-        return crons;
-    }
+
 }

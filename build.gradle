@@ -16,6 +16,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'io.vavr:vavr:0.10.3'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
 }
 
 test {

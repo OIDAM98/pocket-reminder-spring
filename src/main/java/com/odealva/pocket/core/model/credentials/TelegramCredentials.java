@@ -1,42 +1,37 @@
 package com.odealva.pocket.core.model.credentials;
 
-import com.odealva.pocket.core.model.requests.PocketRequest;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "pocket")
-public class PocketCredentials {
-    private String consumerKey;
+@ConfigurationProperties(prefix = "telegram")
+public class TelegramCredentials {
     private String accessToken;
-
-    public String getConsumerKey() {
-        return consumerKey;
-    }
+    private long chatId;
 
     public String getAccessToken() {
         return accessToken;
     }
 
-    public void setConsumerKey(String consumerKey) {
-        this.consumerKey = consumerKey;
+    public long getChatId() {
+        return chatId;
     }
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
     }
 
-    public PocketRequest toRequest(int count) {
-        return new PocketRequest(this.consumerKey, this.accessToken, count);
+    public void setChatId(long chatId) {
+        this.chatId = chatId;
     }
 
     @Override
     public String toString() {
-        return "PocketConfig{" +
-                "consumerKey='" + consumerKey + '\'' +
-                ", accessToken='" + accessToken + '\'' +
+        return "TelegramCredentials{" +
+                "accessToken='" + accessToken + '\'' +
+                ", chatId=" + chatId +
                 '}';
     }
 }

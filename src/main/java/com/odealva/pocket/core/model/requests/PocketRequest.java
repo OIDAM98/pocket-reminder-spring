@@ -34,4 +34,13 @@ public class PocketRequest {
     public String getSort() {
         return sort;
     }
+
+    @Override
+    public String toString() {
+        return "PocketRequest{" +
+                "consumerKey='" + consumerKey + '\'' +
+                ", accessToken='" + accessToken + '\'' +
+                ", count=" + count +
+                '}';
+    }
 }

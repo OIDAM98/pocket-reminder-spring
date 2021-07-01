@@ -1,15 +1,29 @@
 package com.odealva.pocket.core.model.configuration;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
 import java.util.List;
 
+@Configuration
+@EnableConfigurationProperties
+@ConfigurationProperties(prefix = "schedules")
 public class CronConfig {
-    private List<String> schedules;
+    private List<String> timers;
 
-    public CronConfig(List<String> schedules) {
-        this.schedules = schedules;
+    public List<String> getTimers() {
+        return timers;
     }
 
-    public List<String> getSchedules() {
-        return schedules;
+    public void setTimers(List<String> timers) {
+        this.timers = timers;
+    }
+
+    @Override
+    public String toString() {
+        return "CronConfig{" +
+                "timers=" + timers +
+                '}';
     }
 }
