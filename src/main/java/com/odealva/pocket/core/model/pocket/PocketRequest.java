@@ -1,4 +1,4 @@
-package com.odealva.pocket.core.model.requests;
+package com.odealva.pocket.core.model.pocket;
 
 public class PocketRequest {
     private String consumerKey;

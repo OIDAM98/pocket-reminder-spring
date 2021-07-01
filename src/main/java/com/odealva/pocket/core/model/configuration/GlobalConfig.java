@@ -17,7 +17,7 @@ public class GlobalConfig {
         return new MessagesConfig();
     }
 
-    @Bean("schedues")
+    @Bean("schedules")
     public CronConfig schedules() {
         return new CronConfig();
     }
@@ -32,5 +32,14 @@ public class GlobalConfig {
         return new TelegramCredentials();
     }
 
-
+    @Override
+    public String toString() {
+        return "GlobalConfig{" +
+                "\n" + "msgs: " + msgsConf() +
+                "\n" + "pocket: " + pocket() +
+                "\n" + "telegram: " + telegram() +
+                "\n" + "schedules" + schedules() +
+                "\n" +
+                "}";
+    }
 }
