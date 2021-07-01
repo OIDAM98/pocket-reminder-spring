@@ -17,18 +17,4 @@ import pl.codeset.pocket.PocketAuthFactory;
 @Import({GlobalConfig.class})
 @EnableConfigurationProperties
 public class AppConfiguration {
-
-    @Qualifier("pocketConf")
-    @Autowired
-    private PocketCredentials credentials;
-
-    @Bean
-    public PocketAuth pocketAuth() {
-        return PocketAuthFactory.createForAccessToken(credentials.getConsumerKey(), credentials.getAccessToken());
-    }
-
-    @Bean
-    public Pocket pocket(PocketAuth auth) {
-        return new Pocket(auth);
-    }
 }

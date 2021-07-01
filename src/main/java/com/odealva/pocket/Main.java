@@ -1,7 +1,7 @@
 package com.odealva.pocket;
 
-import com.odealva.pocket.core.controllers.Controller;
-import com.odealva.pocket.core.controllers.connection.PocketConnection;
+import com.odealva.pocket.core.service.AppService;
+import com.odealva.pocket.core.service.PocketService;
 import com.odealva.pocket.configuration.GlobalConfig;
 import com.odealva.pocket.configuration.AppConfiguration;
 import com.odealva.pocket.core.model.pocket.PocketArticle;
@@ -24,12 +24,12 @@ public class Main {
 		final GlobalConfig config = ctx.getBean(GlobalConfig.class);
 		logger.debug("Loaded the following config: ");
 		logger.debug(config.toString());
-		final PocketConnection pocket = ctx.getBean(PocketConnection.class);
+		final PocketService pocket = ctx.getBean(PocketService.class);
 		Try<List<PocketItem>> articles = pocket.getArticles(config.msgsConf().getAmountToRequest());
 		logger.debug(articles.toString());
-		final Controller controller = ctx.getBean(Controller.class);
-		Try<List<PocketArticle>> domain = articles.map(controller::transformToDomain);
-		Try<List<PocketArticle>> randomized = domain.map(arts -> controller.getRandomArticles(arts, config.msgsConf().getAmountToSend()));
+		final AppService appService = ctx.getBean(AppService.class);
+		Try<List<PocketArticle>> domain = articles.map(appService::transformToDomain);
+		Try<List<PocketArticle>> randomized = domain.map(arts -> appService.getRandomArticles(arts, config.msgsConf().getAmountToSend()));
 		logger.debug("Initial count of articles: " + articles.map(a -> a.size()));
 		logger.debug("Randomized count: " + randomized.map(a -> a.size()));
 	}

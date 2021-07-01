@@ -1,4 +1,4 @@
-package com.odealva.pocket.core.controllers.connection;
+package com.odealva.pocket.core.service;
 
 import com.odealva.pocket.core.model.credentials.PocketCredentials;
 import com.odealva.pocket.core.model.pocket.PocketRequest;
@@ -13,16 +13,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import pl.codeset.pocket.Pocket;
 import pl.codeset.pocket.PocketAuth;
-import pl.codeset.pocket.PocketAuthFactory;
 import pl.codeset.pocket.read.*;
 
 import javax.annotation.PostConstruct;
 
 
 @Component
-public class PocketConnection {
+public class PocketService {
 
-    private static final Logger logger = LoggerFactory.getLogger(PocketConnection.class);
+    private static final Logger logger = LoggerFactory.getLogger(PocketService.class);
 
     @Qualifier("pocketConf")
     @Autowired

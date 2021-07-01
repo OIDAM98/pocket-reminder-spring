@@ -1,4 +1,4 @@
-package com.odealva.pocket.core.controllers;
+package com.odealva.pocket.core.service;
 
 import com.odealva.pocket.core.model.pocket.PocketArticle;
 import com.odealva.pocket.core.model.telegram.MarkdownFormat;
@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.Set;
 
 @Component
-public class Controller {
+public class AppService {
 
     public List<PocketArticle> transformToDomain(List<PocketItem> items) {
         return items.map(PocketArticle::itemToArticle);
