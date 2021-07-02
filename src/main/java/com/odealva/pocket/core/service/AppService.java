@@ -1,8 +1,11 @@
 package com.odealva.pocket.core.service;
 
+import com.odealva.pocket.configuration.MessagesConfig;
 import com.odealva.pocket.core.model.pocket.PocketArticle;
 import com.odealva.pocket.core.model.telegram.MarkdownFormat;
 import io.vavr.collection.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import pl.codeset.pocket.read.PocketItem;
 
@@ -13,12 +16,16 @@ import java.util.Set;
 
 @Service
 public class AppService {
+    @Autowired
+    @Qualifier("msgsConfig")
+    private MessagesConfig config;
 
     public List<PocketArticle> transformToDomain(List<PocketItem> items) {
         return items.map(PocketArticle::itemToArticle);
     }
 
-    public List<PocketArticle> getRandomArticles(List<PocketArticle> articles, int max) {
+    public List<PocketArticle> getRandomArticles(List<PocketArticle> articles) {
+        int max = config.getAmountToSend();
         Set<Integer> used = new HashSet<>();
         ArrayList<PocketArticle> toReturn = new ArrayList<>();
         Random random = new Random();
