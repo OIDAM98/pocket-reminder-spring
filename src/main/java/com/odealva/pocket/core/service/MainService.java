@@ -14,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.codeset.pocket.read.PocketItem;
 
+import javax.annotation.PostConstruct;
+import java.util.concurrent.atomic.AtomicInteger;
+
 @Service
 public class MainService {
 
@@ -30,6 +33,17 @@ public class MainService {
 
     @Autowired
     private TelegramService telegram;
+
+    private AtomicInteger taskCounter;
+
+    @PostConstruct
+    private void generateCounter() {
+        taskCounter = new AtomicInteger(0);
+    }
+
+    public int getTaskNumber() {
+        return taskCounter.incrementAndGet();
+    }
 
     public Try<Tuple2<Integer, Chat>> fetchPocketSendTelegram() {
         logger.info("Fetching articles from Pocket...");
