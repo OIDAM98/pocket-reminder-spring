@@ -5,7 +5,11 @@ import com.odealva.pocket.core.service.PocketService;
 import com.odealva.pocket.configuration.GlobalConfig;
 import com.odealva.pocket.configuration.AppConfiguration;
 import com.odealva.pocket.core.model.pocket.PocketArticle;
+import com.odealva.pocket.core.service.TelegramService;
+import com.pengrad.telegrambot.model.Message;
+import io.vavr.Tuple2;
 import io.vavr.collection.List;
+import io.vavr.collection.Traversable;
 import io.vavr.control.Try;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,8 +34,16 @@ public class Main {
 		final AppService appService = ctx.getBean(AppService.class);
 		Try<List<PocketArticle>> domain = articles.map(appService::transformToDomain);
 		Try<List<PocketArticle>> randomized = domain.map(arts -> appService.getRandomArticles(arts, config.msgsConf().getAmountToSend()));
-		logger.debug("Initial count of articles: " + articles.map(a -> a.size()));
-		logger.debug("Randomized count: " + randomized.map(a -> a.size()));
+		logger.debug("Initial count of articles: " + articles.map(Traversable::size));
+		logger.debug("Randomized count: " + randomized.map(Traversable::size));
+		logger.debug("Messages to send");
+		logger.debug(randomized.map(lst -> lst.mkString("\n")).toString());
+		Try<List<String>> payload = randomized.map(appService::generateTelegramBody);
+		logger.debug("Payload for Telegram");
+		logger.debug(payload.toString());
+		TelegramService telegram = ctx.getBean(TelegramService.class);
+		Try<Tuple2<Boolean, Message>> response = payload.flatMap(p -> telegram.sendArticles(p.mkString("\n")));
+		logger.debug(response.toString());
 	}
 
 }
