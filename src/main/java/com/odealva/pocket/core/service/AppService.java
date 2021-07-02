@@ -3,7 +3,7 @@ package com.odealva.pocket.core.service;
 import com.odealva.pocket.core.model.pocket.PocketArticle;
 import com.odealva.pocket.core.model.telegram.MarkdownFormat;
 import io.vavr.collection.List;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.codeset.pocket.read.PocketItem;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-@Component
+@Service
 public class AppService {
 
     public List<PocketArticle> transformToDomain(List<PocketItem> items) {

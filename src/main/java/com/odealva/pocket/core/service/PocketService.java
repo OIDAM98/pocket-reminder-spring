@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import pl.codeset.pocket.Pocket;
 import pl.codeset.pocket.PocketAuth;
 import pl.codeset.pocket.read.*;
@@ -18,7 +18,7 @@ import pl.codeset.pocket.read.*;
 import javax.annotation.PostConstruct;
 
 
-@Component
+@Service
 public class PocketService {
 
     private static final Logger logger = LoggerFactory.getLogger(PocketService.class);
@@ -56,10 +56,6 @@ public class PocketService {
                 .sort(Sort.valueOf(req.getSort()))
                 .detailType(DetailType.valueOf(req.getDetailType()))
                 .build());
-    }
-
-    private Function1<GetItemsCmd, Try<GetItemsResult>> getItemsResults(Pocket pocket) {
-        return CheckedFunction1.liftTry(pocket::getItems);
     }
 
 }
