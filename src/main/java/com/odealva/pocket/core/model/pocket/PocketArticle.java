@@ -69,4 +69,16 @@ public class PocketArticle {
                 generateURL(item)
         );
     }
+
+    @Override
+    public String toString() {
+        return "PocketArticle{" +
+                "item_id='" + item_id + '\'' +
+                ", original_url='" + original_url + '\'' +
+                ", title='" + title + '\'' +
+                ", time_added=" + time_added +
+                ", word_count=" + word_count +
+                ", pocket_url='" + pocket_url + '\'' +
+                '}';
+    }
 }
