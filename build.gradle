@@ -19,6 +19,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
 	implementation 'com.github.tchudyk:pocket-integration:1.2.0'
+	implementation 'com.github.pengrad:java-telegram-bot-api:5.1.0'
 }
 
 test {
