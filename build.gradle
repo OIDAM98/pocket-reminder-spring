@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.odealva'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -20,6 +20,12 @@ dependencies {
 	annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
 	implementation 'com.github.tchudyk:pocket-integration:1.2.0'
 	implementation 'com.github.pengrad:java-telegram-bot-api:5.1.0'
+  compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.22'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
+
 }
 
 test {
