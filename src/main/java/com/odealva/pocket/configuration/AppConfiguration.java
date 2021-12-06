@@ -10,12 +10,12 @@ import org.springframework.scheduling.concurrent.ConcurrentTaskScheduler;
 
 @ComponentScan(basePackages = "com.odealva.pocket")
 @Configuration
-@Import({GlobalConfig.class})
+@Import({ GlobalConfig.class })
 @EnableConfigurationProperties
 public class AppConfiguration {
 
-    @Bean
-    public TaskScheduler taskScheduler() {
-        return new ConcurrentTaskScheduler();
-    }
+  @Bean
+  public TaskScheduler taskScheduler() {
+    return new ConcurrentTaskScheduler();
+  }
 }

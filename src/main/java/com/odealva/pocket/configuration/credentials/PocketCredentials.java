@@ -5,38 +5,18 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.Data;
+
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "pocket")
+@Data
 public class PocketCredentials {
-    private String consumerKey;
-    private String accessToken;
+  private String consumerKey;
+  private String accessToken;
 
-    public String getConsumerKey() {
-        return consumerKey;
-    }
+  public PocketRequest toRequest(int count) {
+    return new PocketRequest(this.consumerKey, this.accessToken, count);
+  }
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setConsumerKey(String consumerKey) {
-        this.consumerKey = consumerKey;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public PocketRequest toRequest(int count) {
-        return new PocketRequest(this.consumerKey, this.accessToken, count);
-    }
-
-    @Override
-    public String toString() {
-        return "PocketConfig{" +
-                "consumerKey='" + consumerKey + '\'' +
-                ", accessToken='" + accessToken + '\'' +
-                '}';
-    }
 }
